@@ -2,15 +2,17 @@
   "name": "novaus-ide",
   "productName": "Novaus IDE",
   "version": "1.0.0",
-  "description": "Полноценная настольная IDE с проводником, редактором Monaco, терминалом, запуском кода и встроенным декомпилятором",
+  "description": "Настольная IDE на Electron: Monaco-редактор, AI Copilot, встроенный терминал, запуск кода и декомпилятор",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
   },
   "author": "Novaus",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^33.0.0"
+    "electron": "^33.0.0",
+    "electron-builder": "^26.18.0"
   },
   "dependencies": {
     "monaco-editor": "^0.52.0",
@@ -18,5 +20,29 @@
   },
   "allowScripts": {
     "electron@33.4.11": true
+  },
+  "build": {
+    "appId": "com.novaus.ide",
+    "productName": "Novaus IDE",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/monaco-editor/**",
+      "node_modules/wabt/**"
+    ],
+    "win": {
+      "icon": "src/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   }
 }
