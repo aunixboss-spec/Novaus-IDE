@@ -1,0 +1,30 @@
+# Node / Electron
+node_modules/
+dist/
+build/
+out/
+release/
+
+# Build artifacts and caches
+*.log
+npm-debug.log*
+.npm/
+.cache/
+
+# Decompiler outputs
+*.decompiled.java
+*.wat.out
+
+# Local app data (never commit)
+# AI provider config lives in %APPDATA%\Novaus IDE\config.json — outside the repo
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*~

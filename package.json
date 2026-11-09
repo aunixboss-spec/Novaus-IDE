@@ -1,0 +1,22 @@
+{
+  "name": "novaus-ide",
+  "productName": "Novaus IDE",
+  "version": "1.0.0",
+  "description": "Полноценная настольная IDE с проводником, редактором Monaco, терминалом, запуском кода и встроенным декомпилятором",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Novaus",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.52.0",
+    "wabt": "^1.0.39"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+  <title>Novaus IDE</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
+<link rel="icon" href="assets/icon.png">
+</head>
+<body>
+  <!-- Верхняя панель -->
+  <div id="topbar">
+    <div class="logo"><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px;color:#4fc3f7"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Novaus IDE</div>
+    <button id="btn-open-folder"><svg class="i" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Open Project</button>
+    <button id="btn-open-file"><svg class="i" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Open File</button>
+    <button id="btn-save" title="Ctrl+S"><svg class="i" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save Now</button>
+    <button id="btn-run" title="F5"><svg class="i i-f" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>Run Code</button>
+    <button id="btn-decompile" title="Decompile a binary file"><svg class="i i-f" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>Decompiler</button>
+    <button id="btn-ai" title="AI Copilot — Your Ultimate Coding Assistant (Ctrl+I)"><svg class="i" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>AI Copilot</button>
+    <button id="btn-new-file"><svg class="i" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Create New File</button>
+    <button id="btn-new-dir"><svg class="i" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>Create New Folder</button>
+    <div id="topbar-right">
+      <span id="status-info"></span>
+    </div>
+  </div>
+
+  <div id="main">
+    <!-- Проводник -->
+    <div id="sidebar">
+      <div class="side-title">Project Explorer</div>
+      <div id="tree"></div>
+    </div>
+
+    <!-- Центр: вкладки + редактор -->
+    <div id="center">
+      <div id="tabs"></div>
+      <div id="editor-zone">
+        <div id="editor"></div>
+        <div id="empty-hint">Open A Folder Or File To Unleash The Ultimate Coding Experience</div>
+      </div>
+      <div id="bottom-panel">
+        <div class="panel-tabs">
+          <button data-panel="term" class="active">Terminal</button>
+          <button data-panel="output">Output</button>
+          <button id="panel-close" title="Hide Panel">▼</button>
+        </div>
+        <div id="panel-body">
+          <div id="panel-term"></div>
+          <div id="panel-output"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Правая панель: AI-чат -->
+    <div id="ai-panel">
+      <div class="side-title"><svg class="i" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg> AI Copilot — Your Ultimate Coding Assistant
+        <span class="ai-actions">
+          <button id="ai-settings-btn" title="Settings (endpoint, model, API key)"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+          <button id="ai-clear-btn" title="Clear chat"><svg class="i" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+        </span>
+      </div>
+
+      <div id="ai-settings" class="ai-settings">
+        <label>Endpoints (OpenAI Compatible)</label>
+        <input id="ai-endpoint" placeholder="https://api.openai.com/v1">
+        <label>Model — Pick Your Powerhouse</label>
+        <input id="ai-model" placeholder="gpt-4o-mini" list="ai-models-list">
+        <datalist id="ai-models-list"></datalist>
+        <div class="ai-check-row">
+          <button id="ai-check-btn">Check Key & Load Models</button>
+          <span id="ai-check-status"></span>
+        </div>
+        <label>API Key — Unlock The Magic</label>
+        <input id="ai-key" type="password" placeholder="sk-…">
+        <label>System Prompt — Tune The Brain</label>
+        <textarea id="ai-sysprompt" rows="3"></textarea>
+        <div class="ai-settings-actions">
+          <button id="ai-save-btn" class="ai-primary">Save Settings</button>
+          <button id="ai-cancel-btn">Cancel Changes</button>
+        </div>
+      </div>
+
+      <div id="ai-msgs">
+        <div class="ai-empty" id="ai-empty">👋 Welcome To The Future Of Coding! I Can Explain, Fix And Refactor Your Code LikeMagic.<br>Open A File, Set Your API Key Via ⚙ And Watch The AI Work Its Magic.</div>
+      </div>
+
+      <div class="ai-context-row">
+        <label><input type="checkbox" id="ai-attach-file" checked> Attach The Current File For Supercharged Context</label>
+        <label class="agent-toggle"><input type="checkbox" id="ai-agent-mode"> <svg class="i" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg> Agent Mode — Files + Terminal At Your Command</label>
+      </div>
+
+      <div class="ai-input-row">
+        <textarea id="ai-input" rows="3" placeholder="Ask The AI Anything About Your Code… (Enter To Send, Shift+Enter For A New Line)"></textarea>
+        <button id="ai-send" class="ai-primary" title="Send"><svg class="i" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Правая панель: декомпилятор -->
+    <div id="decomp-panel">
+      <div class="side-title"><svg class="i i-f" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg> Decompiler</div>
+      <div class="decomp-drop" id="decomp-drop">
+        Drop A Binary File Here — Instant Magic<br><br>
+        <b>.wasm</b> — Built-In Decompiler (WABT)<br>
+        <b>.class</b> — javap (JDK) / CFR<br>
+        <b>.pyc / .pyo</b> — Python Bytecode Power<br>
+        <b>.dll / .exe</b> — .NET (ILSpy)<br><br>
+        or <button id="decomp-pick">Pick A File…</button>
+      </div>
+      <div id="decomp-status"></div>
+      <div id="decomp-result"></div>
+    </div>
+  </div>
+
+  <!-- Статус-бар -->
+  <div id="statusbar">
+    <span id="st-path">No Project Open Yet — Your Coding Adventure Starts Here</span>
+    <span id="st-cursor"></span>
+    <span id="st-lang"></span>
+  </div>
+
+  <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
