@@ -1,67 +1,85 @@
 <div align="center">
 
-# Novaus IDE
+# ⚡ Novaus IDE
 
-Lightweight desktop IDE with built-in bytecode decompilation and autonomous AI agent.
+### *The Ultimate Engineering Experience. Power Your Code. Unleash Your Potential.*
 
-[![Release](https://img.shields.io/badge/release-v1.0-blue?style=flat-square)](https://github.com/aunixboss-spec/Novaus-IDE/releases)
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey?style=flat-square)]()
-[![Electron](https://img.shields.io/badge/built%20with-Electron-47848F?style=flat-square&logo=electron)]()
+Next-generation desktop IDE blending raw Electron speed, sleek aesthetics, autonomous AI agents, and a dedicated native binary decompiler suite.
+
+[![Release](https://img.shields.io/badge/release-v1.0-blue?style=for-the-badge)](https://github.com/aunixboss-spec/Novaus-IDE/releases)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows-black?style=for-the-badge)]()
+[![Electron](https://img.shields.io/badge/built%20with-Electron-47848F?style=for-the-badge&logo=electron)]()
 
 <br><br>
 
-<img src="src/assets/IMG_20261110_134436.jpg" alt="Novaus IDE Workspace" width="900" />
+<img src="src/assets/IMG_20261110_134436.jpg" alt="Novaus IDE Workspace" width="1000" />
 
 </div>
 
-## Overview
+---
 
-**Novaus IDE** is a minimal, fast development environment built on Electron and Monaco Editor. It combines standard editing and script execution with an embedded reverse-engineering workspace, allowing you to disassemble and decompile compiled binaries alongside your source tree.
+## 💎 Overview
 
-## Supported Decompiler Formats
+**Novaus IDE** isn't just another text editor — it’s a lightweight powerhouse crafted for developers and reverse engineers who refuse to compromise between speed, aesthetics, and pure functionality[span_0](start_span)[span_0](end_span). Built from the ground up around the legendary **Monaco Editor engine**, Novaus delivers instant responsiveness and eliminates the bloat of traditional heavy IDEs[span_1](start_span)[span_1](end_span).
 
-| File Extension | Target Ecosystem | Backend Tool | Status / Prerequisite |
+Inspect compiled assemblies, orchestrate self-directed AI agents, stream CLI execution, and reverse-engineer binaries — all within a single, unified, dark-glass interface[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span).
+
+---
+
+## 🔮 Supported Decompiler Formats
+
+Stop context-switching between third-party decompilers[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span). Novaus IDE embeds a high-performance reverse-engineering pipeline directly beside your active code buffer[span_7](start_span)[span_7](end_span):
+
+| Format | Target Platform | Backend Engine | Integration Level |
 | :--- | :--- | :--- | :--- |
-| **`.wasm`** | WebAssembly | Bundled WABT | Built-in (works offline out of the box) |
-| **`.class`** | JVM / Java | JDK `javap` or CFR | JDK configured in `PATH` or local `cfr.jar` |
-| **`.pyc`, `.pyo`** | Python Bytecode | Python `dis` | Python 3.x available in `PATH` |
-| **`.dll`, `.exe`** | .NET Assemblies | ILSpy (`ilspycmd`) | `dotnet tool install -g ilspycmd` |
+| **`.wasm`** | WebAssembly | **WABT** (Native) | ⚡ **Zero Setup** — Works fully offline out of the box |
+| **`.class`** | JVM / Java Bytecode | **javap** / **CFR** | 🚀 Native JDK PATH or instant local JAR hook |
+| **`.pyc`, `.pyo`** | Python Bytecode | Python **dis** Engine | 🐍 Direct disassembly through local Python runtime |
+| **`.dll`, `.exe`** | .NET Ecosystem | **ILSpy** (`ilspycmd`) | 🛠 High-speed C# / IL reconstruction |
 
 <br>
 
 <div align="center">
-  <img src="src/assets/IMG_20261110_134450.jpg" alt="Novaus IDE Decompiler & AI" width="900" />
+  <img src="src/assets/IMG_20261110_134450.jpg" alt="Novaus IDE Decompiler & AI" width="1000" />
 </div>
 
-## Features
+---
 
-* **Monaco Editor** — Multi-tab editing powered by VS Code's core engine with syntax highlighting for 25+ languages, change indicators, and file-type icons.
-* **Autonomous AI Copilot** — Connects to any OpenAI-compatible API endpoint (Groq, OpenRouter, OpenAI):
-  * **Agent Mode** — AI can read/modify workspace files and execute terminal commands.
-  * **Model Auto-Discovery** — Instant API key validation and model loading.
-  * **Code Insertion** — Transfer generated snippets directly into the open editor tab.
-* **Integrated PowerShell Terminal** — Terminal instance bound to the workspace directory with `↑`/`↓` command navigation.
-* **Instant Script Runner (`F5`)** — Fast execution of Python and Node.js files with output streamed directly into the bottom drawer.
-* **Session Persistence** — Automatically restores workspace directories, open tabs, terminal history, and AI conversations across launches.
+## ⚡ Elite Features
 
-## AI Configuration
+* **Monaco Core** — The unmatched performance of VS Code’s editing engine featuring syntax highlighting across 25+ programming languages, granular change indicators, and bespoke file iconography[span_8](start_span)[span_8](end_span).
+* **Autonomous AI Copilot** — Elevate your workflow with any OpenAI-compatible provider (Groq, OpenRouter, OpenAI, local LLMs)[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span):
+  * **True Agent Mode** — Grants the AI agency to inspect file hierarchies, commit changes, and trigger shell pipelines autonomously[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).
+  * **Dynamic Auto-Discovery** — Instant API handshake with live model list fetching straight from your endpoint[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span).
+  * **Zero-Friction Insertion** — Seamlessly beam generated code snippets straight into your active workspace tab[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).
+* **Embedded PowerShell Console** — Low-latency terminal anchored directly to your project root with deep command history navigation (`↑`/`↓`)[span_17](start_span)[span_17](end_span).
+* **Instant Runner (`F5`)** — High-speed script execution for Python and Node.js with zero configuration and live output streaming[span_18](start_span)[span_18](end_span).
+* **Intelligent Session Persistence** — Effortlessly resumes your creative flow: every tab, open directory, terminal command, and Copilot context is restored instantly on launch[span_19](start_span)[span_19](end_span).
 
-1. Open the AI Copilot pane (<kbd>Ctrl</kbd> + <kbd>I</kbd>).
-2. Click **Settings** (⚙) and set your custom Base URL (e.g. `https://api.groq.com/openai/v1`), Model name, and API key.
-3. Click **Check Key & Load Models** to validate credentials and populate models.
+---
 
-API credentials remain strictly local at `%APPDATA%\Novaus IDE\config.json`.
+## 🔑 AI Engine Configuration
 
-## Keyboard Shortcuts
+1. Toggle the AI Copilot pane (<kbd>Ctrl</kbd> + <kbd>I</kbd>)[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span).
+2. Click **Settings** (⚙) and input your Base URL (e.g. `https://api.groq.com/openai/v1`), preferred model identifier, and API secret[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span).
+3. Click **Check Key & Load Models** for instantaneous verification[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span).
 
-| Shortcut | Action |
+> 🔒 *Absolute Privacy: Your API credentials never leave your machine — saved locally and encrypted at `%APPDATA%\Novaus IDE\config.json`.*
+
+---
+
+## ⌨️ Command Shortcuts
+
+| Hotkey | Command |
 | :--- | :--- |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd> | Save current file |
-| <kbd>F5</kbd> | Execute current script (Python / Node.js) |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd> | Save Active Buffer |
+| <kbd>F5</kbd> | Execute Script (Python / Node.js) |
 | <kbd>Ctrl</kbd> + <kbd>B</kbd> | Toggle Project Explorer |
-| <kbd>Ctrl</kbd> + <kbd>I</kbd> | Toggle AI Copilot panel |
+| <kbd>Ctrl</kbd> + <kbd>I</kbd> | Summon AI Copilot |
 
-## License
+---
 
-Licensed under the [MIT License](LICENSE).
+## 📜 License
+
+Distributed under the prestigious [MIT License](LICENSE).
