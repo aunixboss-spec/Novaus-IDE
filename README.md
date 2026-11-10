@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="src/assets/icon.png" alt="Novaus IDE Logo" width="96" />
+
 # ⚡ Novaus IDE
 
 ### *The Ultimate Engineering Experience. Power Your Code. Unleash Your Potential.*
@@ -65,7 +67,7 @@ Stop context-switching between third-party decompilers. Novaus IDE embeds a high
 2. Click **Settings** (⚙) and input your Base URL (e.g. `https://api.groq.com/openai/v1`), preferred model identifier, and API secret.
 3. Click **Check Key & Load Models** for instantaneous verification.
 
-> 🔒 *Absolute Privacy: Your API credentials never leave your machine — saved locally at `%APPDATA%\Novaus IDE\config.json`.*
+> 🔒 *Absolute Privacy: Your API credentials never leave your machine — saved locally and encrypted at `%APPDATA%\Novaus IDE\config.json`.*
 
 ---
 
